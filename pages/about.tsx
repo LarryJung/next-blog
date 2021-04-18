@@ -1,16 +1,12 @@
-import Link from 'next/link'
-import Layout from '../components/Layout'
+import Link from 'next/link';
+import Layout from '../components/Layout';
+import ReactMarkdown from 'react-markdown';
+import content from '@/assets/about.md';
 
 const AboutPage = () => (
-  <Layout title="About | Next.js + TypeScript Example">
-    <h1>About</h1>
-    <p>This is the about page</p>
-    <p>
-      <Link href="/">
-        <a>Go home</a>
-      </Link>
-    </p>
+  <Layout title="About" breadCrumbs={['About']}>
+    <ReactMarkdown children={content} />
   </Layout>
-)
+);
 
-export default AboutPage
+export default AboutPage;

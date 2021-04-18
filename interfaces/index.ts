@@ -5,6 +5,18 @@
 // import { User } from 'path/to/interfaces';
 
 export type User = {
-  id: number
-  name: string
+  id: number;
+  name: string;
+};
+
+export interface MiniPost {
+  title: string;
+  date: string;
+  author: string;
+  coverImage?: string;
+  excerpt: string;
+}
+
+export interface FullPost extends MiniPost {
+  content: string;
 }
