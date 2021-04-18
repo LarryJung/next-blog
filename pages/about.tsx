@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import Layout from '../components/Layout';
 import ReactMarkdown from 'react-markdown';
 import content from '@/assets/about.md';
