@@ -1,12 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BlogLayout from '@/components/Layout';
-import { wrapProps } from '../../utils/propsUtils';
-import { useRouter, withRouter } from 'next/router';
-import { GetStaticPaths } from 'next';
 import { getPostByPath, getAllPosts } from '@/lib/api';
 import markdownToHtml from '../../../lib/markdownToHtml';
-export const getStaticProps = async ({ params }) => {
-  const post = getPostByPath(params.slug, ['title', 'date', 'author', 'content']);
+import { FullPost } from '../../../interfaces/index';
+
+export const getStaticProps = async ({ params }: { params: { slug: string[] } }) => {
+  const post = getPostByPath(params.slug, ['title', 'date', 'author', 'content']) as FullPost;
   const content = await markdownToHtml(post.content || '');
   return {
     props: {
@@ -17,7 +16,7 @@ export const getStaticProps = async ({ params }) => {
 };
 
 export const getStaticPaths = async () => {
-  const posts = getAllPosts(['slug']);
+  const posts: { breadCrumbs: string[] }[] = getAllPosts(['slug']);
   return {
     paths: posts.map((post) => {
       return {

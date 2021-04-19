@@ -12,9 +12,12 @@ export type User = {
 export interface MiniPost {
   title: string;
   date: string;
-  author: string;
+  author: {
+    name: string;
+  };
   coverImage?: string;
   excerpt: string;
+  breadCrumbs: string[];
 }
 
 export interface FullPost extends MiniPost {

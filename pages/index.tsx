@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import BlogLayout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
 import { MiniPost } from '../interfaces/index';
@@ -8,7 +8,7 @@ import Link from 'next/link';
 const { Meta } = Card;
 
 export const getStaticProps = async () => {
-  const allPosts: MiniPost[] = getAllPosts(['title', 'date', 'author', 'excerpt']).map((p) => {
+  const allPosts: MiniPost[] = getAllPosts(['title', 'date', 'author', 'excerpt']).map((p: any) => {
     const post = {
       title: p.title,
       date: p.date,
