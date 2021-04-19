@@ -24,12 +24,15 @@ const BlogLayout = ({ children, title = 'the next blog', breadCrumbs }: Props) =
           zIndex: 1,
           width: '100%',
           display: 'flex',
-          justifyContent: 'center',
+          justifyContent: 'flex-start',
           flexDirection: 'row',
         }}
       >
-        <div className="logo"></div>
-        <Menu theme="dark" mode="horizontal">
+        <span className="logo" style={{ color: 'white', fontSize: '25px', minWidth: '30px' }}>
+          Chaesun blog
+        </span>
+
+        <Menu theme="dark" mode="horizontal" defaultOpenKeys={['1', '2']}>
           <Menu.Item key="1">
             <Link href="/">
               <a style={{ fontWeight: 'bold', fontSize: '20px' }}>Home</a>
