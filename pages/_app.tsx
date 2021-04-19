@@ -1,10 +1,13 @@
 import type { AppProps /*, AppContext */ } from 'next/app';
 import React from 'react';
-
 import './_app.scss';
 
 function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+    </>
+  );
 }
 
 // Only uncomment this method if you have blocking data requirements for

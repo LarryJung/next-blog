@@ -6,7 +6,7 @@ import ReactMarkdown from 'react-markdown';
 
 const AboutPage = () => (
   <Layout title="About" breadCrumbs={['About']}>
-    <ReactMarkdown children="# i am developer" />
+    <ReactMarkdown children="# Hello world :)" />
   </Layout>
 );
 

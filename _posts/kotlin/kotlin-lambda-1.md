@@ -19,12 +19,12 @@ ogImage:
 가장 간단한 예제로 숫자 두개를 함수를 만들어봅니다.
 
 ```kotlin
-val plus: (Int, Int) => Int = { a, b -> a + b}
+val plus: (Int, Int) => Int = {a, b -> a + b}
 ```
 
 모던한 언어들은 많이 지원을 해 주는데.. 함수를 부분만 적용하면 재사용에 이점이 있는데요 위 같이 짜버리면 부분적용은 커녕 그게 무슨 이야기인지도 모르져.. 개념 자체가 없으니
 
-```
+```kotlin
 val plus10: (Int) -> (Int) = { i + 10 }
 val plus6: (Int) -> (Int) = { i + 6 }
 val plus3: (Int) -> (Int) = { i + 3 }
@@ -32,11 +32,15 @@ val plus3: (Int) -> (Int) = { i + 3 }
 
 위 3가지 함수를 부분적용 함수라는 개념(=커링)을 이용하면 좀 더 코드를 줄여볼 수 있습니다.
 
-```
-val plus: (Int) -> (Int) -> Int = {a -> { b -> { a + b}}}
+```kotlin
+val plus: (Int) -> (Int) -> Int = {a -> {b -> {a + b}}}
 val plus10 = plus(10)
 val plus6: plus(6)
 val plus3: plus(3)
+```
+
+```javascript
+const a = 'dd';
 ```
 
 커링된 plus 함수에서 타입을 알고 있으니 plus10 등을 정의할 때는 타입을 따로 지정하지 않고 저렇게 짧게 써서 사용할 수 있습니다.

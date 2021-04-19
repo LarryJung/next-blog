@@ -34,6 +34,7 @@ const IndexPage = ({ posts }: Props) => {
       <ul>
         {posts.map((post) => (
           <Card
+            className={'homeCardList'}
             key={post.title}
             size="default"
             title={post.title}
@@ -42,12 +43,17 @@ const IndexPage = ({ posts }: Props) => {
                 <a>Read More...</a>
               </Link>
             }
-            style={{ marginBottom: '30px' }}
+            style={{
+              marginBottom: '30px',
+              borderStyle: 'solid',
+              borderColor: 'lightsteelblue',
+              boxShadow: '3px 3px 3px gray',
+            }}
           >
-            <p style={{ fontSize: '13px' }}>{post.date}</p>
             <p>{post.excerpt}</p>
-            <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
-              <Meta description={post.author.name} />
+            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+              <Meta description={`${post.date}`} style={{ marginBottom: '10px' }} />
+              <Meta description={`by ${post.author.name}`} />
             </div>
           </Card>
         ))}
