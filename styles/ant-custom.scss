@@ -1,6 +1,21 @@
 .homeCardList:hover {
-  background-color: orange !important;
+  background-color: rgb(255, 200, 80) !important;
   -webkit-transition: background-color 150ms linear;
   -ms-transition: background-color 150ms linear;
   transition: background-color 150ms linear;
+}
+
+.indexHero {
+  height: 200px !important;
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.3)),
+    url('/images/index_hero3.png') !important;
+  background-size: cover !important;
+}
+
+.indexFixedHeader {
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  transition: all 0.3s;
 }

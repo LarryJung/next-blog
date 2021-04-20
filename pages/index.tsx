@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import BlogLayout from '../components/Layout';
 import { getAllPosts } from '../lib/api';
 import { MiniPost } from '../interfaces/index';
@@ -29,8 +29,35 @@ interface Props {
 }
 
 const IndexPage = ({ posts }: Props) => {
+  const prevScrollY = useRef<number>(0);
+  const [goingUp, setGoingUp] = useState<boolean>(false);
+  const [fixed, setFixed] = useState<boolean>(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      if (prevScrollY.current >= 350) {
+        setFixed(false);
+      } else {
+        setFixed(true);
+      }
+      if (prevScrollY.current < currentScrollY && goingUp) {
+        setGoingUp(false);
+      }
+      if (prevScrollY.current > currentScrollY && !goingUp) {
+        setGoingUp(true);
+      }
+      prevScrollY.current = currentScrollY;
+      console.log(goingUp, currentScrollY, fixed);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [goingUp]);
+
   return (
-    <BlogLayout title="Home | Next Blog">
+    <BlogLayout title="Home | Next Blog" fixed={fixed} hero={true}>
       <ul>
         {posts.map((post) => (
           <Card

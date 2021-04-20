@@ -70,7 +70,7 @@ const PostPage = ({ title, date, author, content, breadCrumbs }: Props) => {
         <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.2/highlight.min.js"></script>
         <script>hljs.highlightAll();</script>
       </Head>
-      <BlogLayout title={title} breadCrumbs={breadCrumbs}>
+      <BlogLayout title={title} breadCrumbs={breadCrumbs} hero={false} fixed={false}>
         <h1 style={{ fontSize: '35px' }}>{title}</h1>
         <hr />
         <div
