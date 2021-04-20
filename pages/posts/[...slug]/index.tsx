@@ -1,25 +1,50 @@
 import React from 'react';
 import BlogLayout from '@/components/Layout';
-import { getPostByPath } from '@/lib/api';
+import { getPostByPath, getAllPosts } from '@/lib/api';
 import markdownToHtml from '../../../lib/markdownToHtml';
 import { FullPost } from '../../../interfaces/index';
-import { GetServerSideProps } from 'next';
+// import { GetStaticPaths } from 'next';
 import Parser from 'html-react-parser';
 import Head from 'next/head';
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const post = getPostByPath(context.query.slug, [
-    'title',
-    'date',
-    'author',
-    'content',
-  ]) as FullPost;
+// export const getServerSideProps: GetServerSideProps = async (context) => {
+//   const post = getPostByPath(context.query.slug, [
+//     'title',
+//     'date',
+//     'author',
+//     'content',
+//   ]) as FullPost;
+//   const content = await markdownToHtml(post.content || '');
+//   return {
+//     props: {
+//       ...post,
+//       content,
+//     },
+//   };
+// };
+
+export const getStaticProps = async ({ params }: { params: { slug: string[] } }) => {
+  const post = getPostByPath(params.slug, ['title', 'date', 'author', 'content']) as FullPost;
   const content = await markdownToHtml(post.content || '');
   return {
     props: {
       ...post,
       content,
     },
+  };
+};
+
+export const getStaticPaths = async () => {
+  const posts: { breadCrumbs: string[] }[] = getAllPosts(['slug']);
+  return {
+    paths: posts.map((post) => {
+      return {
+        params: {
+          slug: post.breadCrumbs,
+        },
+      };
+    }),
+    fallback: false,
   };
 };
 
