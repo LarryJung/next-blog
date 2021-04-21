@@ -30,13 +30,18 @@ const BlogLayout = ({
     margin: '',
     backgroundColor: '',
     borderBottom: '',
+    opacity: 1,
+    boxShadow: '',
   };
   !fixed && (headerStyle.position = 'fixed');
   !fixed && (headerStyle.backgroundColor = 'white');
   fixed && (headerStyle.backgroundColor = '');
-  !fixed && (headerStyle.borderBottom = 'solid');
-  fixed && (headerStyle.borderBottom = '');
-
+  // !fixed && (headerStyle.borderBottom = '1px solid');
+  // fixed && (headerStyle.borderBottom = '');
+  fixed && (headerStyle.opacity = 1);
+  !fixed && (headerStyle.opacity = 0.8);
+  fixed && (headerStyle.boxShadow = '');
+  !fixed && (headerStyle.boxShadow = '0 1px 40px 1px gray');
   // !hero && (headerStyle.margin = '0 0 64px 0');
 
   const contentStyle = {
@@ -44,7 +49,7 @@ const BlogLayout = ({
   };
   !fixed && (contentStyle.marginTop = 64);
 
-  const headerFont = { color: 'black', fontSize: '25px', minWidth: '30px' };
+  const headerFont = { color: 'black', fontSize: '20px', minWidth: '30px' };
   !fixed && (headerFont.color = 'black');
   fixed && (headerFont.color = 'white');
   const menuTheme = fixed ? 'dark' : 'light';
@@ -66,7 +71,7 @@ const BlogLayout = ({
               alignItems: 'center',
             }}
           >
-            <div
+            {/* <div
               style={{
                 fontFamily: 'sans-serif',
                 fontSize: '40px',
@@ -75,7 +80,7 @@ const BlogLayout = ({
               }}
             >
               Everybody have a Good Day :)
-            </div>
+            </div> */}
           </div>
         )}
         <Header className="indexFixedHeader" style={headerStyle as React.CSSProperties}>
@@ -86,12 +91,12 @@ const BlogLayout = ({
           <Menu theme={menuTheme} mode="horizontal" defaultOpenKeys={['1', '2']}>
             <Menu.Item key="1">
               <Link href="/">
-                <a style={{ fontWeight: 'bold', fontSize: '20px' }}>Home</a>
+                <a style={{ fontFamily: 'inherit', fontSize: '15px' }}>Home</a>
               </Link>{' '}
             </Menu.Item>
             <Menu.Item key="2">
               <Link href="/about">
-                <a style={{ fontWeight: 'bold', fontSize: '20px' }}>About</a>
+                <a style={{ fontFamily: 'inherit', fontSize: '15px' }}>About</a>
               </Link>
             </Menu.Item>
             {/* <Menu.Item key="3">
