@@ -1,5 +1,11 @@
+.homeCardList {
+  margin-bottom: 30px;
+  border-color: lightsteelblue;
+  cursor: pointer;
+}
+
 .homeCardList:hover {
-  background-color: rgb(255, 200, 80) !important;
+  background-color: lightgoldenrodyellow !important;
   -webkit-transition: background-color 150ms linear;
   -ms-transition: background-color 150ms linear;
   transition: background-color 150ms linear;
@@ -18,4 +24,51 @@
   -ms-transition: all 0.3s;
   -o-transition: all 0.3s;
   transition: all 0.3s;
+
+  position: fixed;
+  z-index: 1;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: row;
+}
+
+.indexFixedHeader.transparent {
+  opacity: 0.8;
+  background-color: white;
+  border-bottom: double;
+  // box-shadow: 0 1px 40px 1px gray;
+}
+
+.logo {
+  color: black;
+  font-size: 20px;
+  min-width: 30px;
+}
+
+.logo.white {
+  color: white;
+}
+
+.logo.black {
+  color: black;
+}
+
+.layoutContent .breadCrumb {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 100px auto 0 auto;
+  padding: 0 20px 0 20px;
+  align-items: flex-end;
+  max-width: 1000px;
+}
+
+.ant-layout {
+  background: white !important;
+}
+
+.ant-layout-footer {
+  margin-top: 60px;
+  background: white !important;
 }

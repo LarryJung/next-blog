@@ -31,15 +31,15 @@ interface Props {
 const IndexPage = ({ posts }: Props) => {
   const prevScrollY = useRef<number>(0);
   const [goingUp, setGoingUp] = useState<boolean>(false);
-  const [fixed, setFixed] = useState<boolean>(true);
+  const [headerTransparent, setHeaderTransparent] = useState<boolean>(false);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (prevScrollY.current >= 350) {
-        setFixed(false);
+      if (currentScrollY >= 200) {
+        setHeaderTransparent(true);
       } else {
-        setFixed(true);
+        setHeaderTransparent(false);
       }
       if (prevScrollY.current < currentScrollY && goingUp) {
         setGoingUp(false);
@@ -48,7 +48,7 @@ const IndexPage = ({ posts }: Props) => {
         setGoingUp(true);
       }
       prevScrollY.current = currentScrollY;
-      console.log(goingUp, currentScrollY, fixed);
+      console.log(goingUp, currentScrollY, headerTransparent);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -57,32 +57,18 @@ const IndexPage = ({ posts }: Props) => {
   }, [goingUp]);
 
   return (
-    <BlogLayout title="Home | Next Blog" fixed={fixed} hero={true}>
+    <BlogLayout title="Home | Next Blog" headerTransparent={headerTransparent}>
       <ul>
         {posts.map((post) => (
-          <Card
-            className={'homeCardList'}
-            key={post.title}
-            size="default"
-            title={post.title}
-            extra={
-              <Link href={`posts/${post.breadCrumbs.join('/')}`}>
-                <a>Read More...</a>
-              </Link>
-            }
-            style={{
-              marginBottom: '30px',
-              borderStyle: 'solid',
-              borderColor: 'lightsteelblue',
-              boxShadow: '3px 3px 3px gray',
-            }}
-          >
-            <p>{post.excerpt}</p>
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-              <Meta description={`${post.date}`} style={{ marginBottom: '10px' }} />
-              <Meta description={`by ${post.author.name}`} />
-            </div>
-          </Card>
+          <Link href={`posts/${post.breadCrumbs.join('/')}`}>
+            <Card className={'homeCardList'} key={post.title} size="default" title={post.title}>
+              <p>{post.excerpt}</p>
+              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                <Meta description={`${post.date}`} style={{ marginBottom: '10px' }} />
+                <Meta description={`by ${post.author.name}`} />
+              </div>
+            </Card>
+          </Link>
         ))}
       </ul>
     </BlogLayout>
