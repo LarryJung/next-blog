@@ -2,6 +2,7 @@
   margin-bottom: 30px;
   border-color: lightsteelblue;
   cursor: pointer;
+  border-radius: 0.5em;
 }
 
 .homeCardList:hover {
@@ -71,4 +72,13 @@
 .ant-layout-footer {
   margin-top: 60px;
   background: white !important;
+}
+
+.ant-card-head-title {
+  color: midnightblue;
+  font-size: 20px;
+}
+
+.ant-card-body {
+  font-size: 17px;
 }

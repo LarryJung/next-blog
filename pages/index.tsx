@@ -60,14 +60,16 @@ const IndexPage = ({ posts }: Props) => {
     <BlogLayout title="Home | Next Blog" headerTransparent={headerTransparent}>
       <ul>
         {posts.map((post) => (
-          <Link href={`posts/${post.breadCrumbs.join('/')}`}>
-            <Card className={'homeCardList'} key={post.title} size="default" title={post.title}>
-              <p>{post.excerpt}</p>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
-                <Meta description={`${post.date}`} style={{ marginBottom: '10px' }} />
-                <Meta description={`by ${post.author.name}`} />
-              </div>
-            </Card>
+          <Link href={`/posts/${post.breadCrumbs.join('/')}`} key={post.title}>
+            <a>
+              <Card className={'homeCardList'} size="default" title={post.title}>
+                <p>{post.excerpt}</p>
+                <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-end' }}>
+                  <Meta description={`${post.date}`} style={{ marginBottom: '10px' }} />
+                  <Meta description={`by ${post.author.name}`} />
+                </div>
+              </Card>
+            </a>
           </Link>
         ))}
       </ul>
